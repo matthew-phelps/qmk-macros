@@ -54,6 +54,7 @@ enum custom_keycodes {
   ST_MACRO_9,
   ST_MACRO_10,
   ST_MACRO_11,
+  ST_MACRO_12,
   DK_LSPO,
   DK_RSPC,
 };
@@ -103,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_NO,          ST_MACRO_9,     ST_MACRO_10,    KC_NO,          KC_NO,          KC_TRANSPARENT, 
     KC_TRANSPARENT, ST_MACRO_4,     ST_MACRO_5,     ST_MACRO_6,     ST_MACRO_7,     ST_MACRO_8,     KC_TRANSPARENT,                                                                 KC_TRANSPARENT, ST_MACRO_11,    KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_UP,    KC_MS_WH_RIGHT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_NO,          KC_RALT,        KC_NO,          KC_NO,          KC_NO,                                          KC_TRANSPARENT, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_UP,       KC_MS_RIGHT,    KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_NO,          KC_RALT,        KC_NO,          KC_NO,          KC_NO,                                          ST_MACRO_12,    KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_UP,       KC_MS_RIGHT,    KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT,                 KC_MS_BTN2,     KC_MS_BTN3,     KC_MS_BTN1
   ),
@@ -199,7 +200,6 @@ void rgb_matrix_indicators_user(void) {
     break;
   }
 }
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_MACRO_0:
@@ -271,6 +271,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_MACRO_11:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_F10) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT)  SS_DELAY(100) SS_TAP(X_ENTER));
+    }
+    break;
+
+    case ST_MACRO_12:
+    if (record->event.pressed) {
+      SEND_STRING("mphelps@hjerteforening.dk");
 
     }
     break;
