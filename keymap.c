@@ -2,26 +2,10 @@
 #include "version.h"
 #include "keymap_german.h"
 #include "keymap_nordic.h"
-#include "keymap_french.h"
-#include "keymap_spanish.h"
-#include "keymap_hungarian.h"
-#include "keymap_swedish.h"
-#include "keymap_br_abnt2.h"
-#include "keymap_canadian_multilingual.h"
-#include "keymap_german_ch.h"
-#include "keymap_jp.h"
-#include "keymap_bepo.h"
-#include "keymap_italian.h"
-#include "keymap_slovenian.h"
 #include "keymap_danish.h"
 #include "keymap_norwegian.h"
-#include "keymap_portuguese.h"
 #include "keymap_contributions.h"
-#include "keymap_czech.h"
-#include "keymap_romanian.h"
-#include "keymap_russian.h"
-#include "keymap_uk.h"
-#include "keymap_estonian.h"
+#include "keymap_danish.h"
 
 #define KC_MAC_UNDO LGUI(KC_Z)
 #define KC_MAC_CUT LGUI(KC_X)
@@ -65,8 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LALT(KC_F4),    KC_Q,           KC_W,           KC_F,           KC_P,           KC_B,           KC_NO,                                          KC_TRANSPARENT, KC_J,           KC_L,           KC_U,           KC_Y,           DK_QUOT,        KC_NO,          
     KC_TAB,         LGUI_T(KC_A),   LALT_T(KC_R),   LCTL_T(KC_S),   LSFT_T(KC_T),   KC_G,           KC_CAPSLOCK,                                                                    KC_NO,          KC_M,           LSFT_T(KC_N),   LCTL_T(KC_E),   LALT_T(KC_I),   KC_O,           KC_ENTER,       
     KC_TRANSPARENT, KC_Z,           KC_X,           LT(3,KC_C),     LT(2,KC_D),     LT(3,KC_V),                                     KC_K,           KC_H,           KC_COMMA,       RALT_T(KC_DOT), DK_SLSH,        KC_NO,          
-    WEBUSB_PAIR,    KC_TRANSPARENT, KC_TRANSPARENT, TT(5),          TT(1),          KC_ESCAPE,                                                                                                      LT(7,KC_ENTER), TT(3),          TT(2),          KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          
-    LT(1,KC_SPACE), LT(5,KC_TAB),   LT(6,KC_ESCAPE),                LT(3,KC_ENTER), LT(2,KC_DELETE),KC_BSPACE
+    WEBUSB_PAIR,    KC_TRANSPARENT, KC_TRANSPARENT, KC_LEAD,          TT(1),          KC_ESCAPE,                                                                                                      LT(7,KC_ENTER), TT(3),          TT(2),          KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          
+    LT(4,KC_SPACE), LT(5,KC_TAB),   LT(6,KC_ESCAPE),                LT(3,KC_ENTER), LT(2,KC_DELETE),KC_BSPACE
   ),
   [1] = LAYOUT_moonlander(
     RESET,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -200,6 +184,7 @@ void rgb_matrix_indicators_user(void) {
     break;
   }
 }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_MACRO_0:
@@ -276,7 +261,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case ST_MACRO_12:
     if (record->event.pressed) {
-      SEND_STRING("mphelps@hjerteforening.dk");
+      SEND_STRING("mphelps" SS_RALT(SS_TAP(X_2)) "hjerteforening.dk");
 
     }
     break;
@@ -293,4 +278,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
   }
   return true;
+}
+
+LEADER_EXTERNS();
+void matrix_scan_user(void) {
+  LEADER_DICTIONARY() {
+    leading = false;
+    leader_end();
+    // Replace the sequences below with your own sequences.
+    SEQ_ONE_KEY(KC_T) {
+      // When I press KC_LEAD and then T, this sends CTRL + SHIFT + T
+      SEND_STRING(SS_LCTRL(SS_LSFT("t")));
+    }
+    // Note: This is not an array, you don't need to put any commas
+    // or semicolons between sequences.
+    SEQ_TWO_KEYS(KC_E, KC_M) {
+      // When I press KC_LEAD and then N followed by T, this sends CTRL + T
+      SEND_STRING("mphelps" SS_RALT(SS_TAP(X_2)) "hjerteforening.dk");
+    }
+  }
 }
