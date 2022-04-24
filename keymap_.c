@@ -26,15 +26,10 @@
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
-  ST_MACRO_0,
+  ST_MACRO_git_add,
   ST_MACRO_1,
-  ST_MACRO_2,
-  ST_MACRO_3,
-  ST_MACRO_4,
-  ST_MACRO_5,
-  ST_MACRO_6,
-  ST_MACRO_7,
-  ST_MACRO_8,
+  ST_MACRO_DEBUGONCE,
+  ST_MACRO_COMMIT,
   ST_MACRO_9,
   ST_MACRO_10,
   ST_MACRO_11,
@@ -80,14 +75,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LCTL(LSFT(KC_F10)),KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_F1,          KC_F2,          LALT(LSFT(KC_G)),KC_TRANSPARENT,                                                                 KC_TRANSPARENT, LCTL(DK_DOT),   LALT(DK_MINS),  LCTL(LSFT(KC_M)),KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_0,     KC_TRANSPARENT,                                 ST_MACRO_1,     ST_MACRO_2,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, ST_MACRO_3,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_git_add,     KC_TRANSPARENT,                                 ST_MACRO_1,     ST_MACRO_DEBUGONCE,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, ST_MACRO_COMMIT,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [5] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_NO,          ST_MACRO_9,     ST_MACRO_10,    KC_NO,          KC_NO,          KC_TRANSPARENT, 
-    KC_TRANSPARENT, ST_MACRO_4,     ST_MACRO_5,     ST_MACRO_6,     ST_MACRO_7,     ST_MACRO_8,     KC_TRANSPARENT,                                                                 KC_TRANSPARENT, ST_MACRO_11,    KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_UP,    KC_MS_WH_RIGHT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT,     KC_TRANSPARENT,                                                                 KC_TRANSPARENT, ST_MACRO_11,    KC_MS_WH_LEFT,  KC_MS_WH_DOWN,  KC_MS_WH_UP,    KC_MS_WH_RIGHT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_NO,          KC_RALT,        KC_NO,          KC_NO,          KC_NO,                                          ST_MACRO_12,    KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_UP,       KC_MS_RIGHT,    KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT,                 KC_MS_BTN2,     KC_MS_BTN3,     KC_MS_BTN1
@@ -185,9 +180,10 @@ void rgb_matrix_indicators_user(void) {
   }
 }
 
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ST_MACRO_0:
+    case ST_MACRO_git_add:
     if (record->event.pressed) {
       SEND_STRING("git add /A");
 
@@ -199,47 +195,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     }
     break;
-    case ST_MACRO_2:
+    case ST_MACRO_DEBUGONCE:
     if (record->event.pressed) {
       SEND_STRING("debugonce*(" SS_DELAY(100) SS_TAP(X_LEFT));
 
     }
     break;
-    case ST_MACRO_3:
+    case ST_MACRO_COMMIT:
     if (record->event.pressed) {
       SEND_STRING("git commit /m " SS_LSFT(SS_TAP(X_2)) SS_LSFT(SS_TAP(X_2)) SS_TAP(X_LEFT) );
 
     }
-    break;
-    case ST_MACRO_4:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_F10) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT)  SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(1000) "3573");
-
-    }
-    break;
-    case ST_MACRO_5:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_F10) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT)  SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(1000) "6818");
-
-    }
-    break;
-    case ST_MACRO_6:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_F10) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT)  SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(1000) "6582");
-
-    }
-    break;
-    case ST_MACRO_7:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_F10) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT)  SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(1000) "6322");
-
-    }
-    break;
-    case ST_MACRO_8:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_F10) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT) SS_DELAY(100) SS_TAP(X_LEFT)  SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(1000) "3740");
-
-    }
+   
     break;
     case ST_MACRO_9:
     if (record->event.pressed) {
@@ -293,7 +260,7 @@ void matrix_scan_user(void) {
     // Note: This is not an array, you don't need to put any commas
     // or semicolons between sequences.
     SEQ_TWO_KEYS(KC_E, KC_M) {
-      // When I press KC_LEAD and then N followed by T, this sends CTRL + T
+      // When I press KC_LEAD and then E followed by M, this sends my email
       SEND_STRING("mphelps" SS_RALT(SS_TAP(X_2)) "hjerteforening.dk");
     }
   }
