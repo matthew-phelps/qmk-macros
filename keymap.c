@@ -26,15 +26,17 @@
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
-  ST_MCR_git_add,
-  ST_MCR_BRWSR,
-  ST_MCR_DBGONC,
-  ST_MCR_COMMIT,
-  ST_MCR_CRRT,
-  ST_MCR_TILDE,
-  ST_MCR_ASSGN,
-  ST_MCR_RPIPE,
-  ST_MCR_GRV
+  MCR_git_add,
+  MCR_BRWSR,
+  MCR_DBGONC,
+  MCR_COMMIT,
+  MCR_CRRT,
+  MCR_TILDE,
+  MCR_ASSGN,
+  MCR_RPIPE,
+  MCR_GRV,
+  MCR_BCKTK,
+  MCR_RMD
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -57,25 +59,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT_moonlander(
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_NO,          KC_LBRACKET,    KC_NO,          KC_NO,          KC_NO,          KC_MINUS,       KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_KP_SLASH,    KC_7,           KC_8,           KC_9,           KC_NO,          KC_TRANSPARENT, 
-    KC_TAB,         KC_SCOLON,      KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_EQUAL,       KC_TRANSPARENT,                                 KC_TRANSPARENT, DK_UNDS,        KC_4,           KC_5,           KC_6,           KC_NO,          KC_NO,       
+    KC_TAB,         KC_SCOLON,      KC_LALT,        KC_LCTRL,       KC_LSHIFT,      KC_EQUAL,       KC_TRANSPARENT,                                 KC_TRANSPARENT, DK_UNDS,        KC_4,           KC_5,           KC_6,           KC_KP_PLUS,     DK_MINS,       
     KC_NO,          KC_GRAVE,       KC_RALT,        KC_NO,          KC_TRANSPARENT, KC_BSLASH,                                                                      KC_0,           KC_1,           KC_2,           KC_3,           KC_NO,          KC_TRANSPARENT, 
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          KC_ESCAPE,                                                                                      KC_ENTER,       KC_NO,          KC_TRNS,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_NO,          KC_0,           KC_MINUS,                       KC_NO,          KC_TRANSPARENT, KC_BSPACE
   ),
   [3] = LAYOUT_moonlander(
     KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, DK_EXLM,        DK_AT,          DK_HASH,        DK_DLR,         DK_PERC,        KC_TRANSPARENT,                                 KC_TRANSPARENT, ST_MCR_CRRT,    DK_LBRC,        DK_RBRC,        DK_EQL,         DK_MINS,        KC_TRANSPARENT, 
-    KC_TAB,         DK_COLN,        DK_LCBR,        DK_RCBR,        DK_LABK,        DK_RABK,        KC_NO,                                          KC_TRANSPARENT, ST_MCR_TILDE,   DK_LPRN,        DK_RPRN,        KC_NO,          KC_KP_PLUS,     DK_MINS,           
-    KC_NO,          ST_MCR_GRV,     KC_RPRN,        KC_TRANSPARENT, DK_PIPE,        KC_KP_SLASH,                                                                    DK_BSLS,        DK_AMPR,        KC_KP_ASTERISK, KC_NO,          DK_QUES,        KC_TRANSPARENT, 
+    KC_TRANSPARENT, DK_EXLM,        DK_AT,          DK_HASH,        DK_DLR,         DK_PERC,        KC_TRANSPARENT,                                 KC_TRANSPARENT, MCR_CRRT,       DK_LBRC,        DK_RBRC,        DK_EQL,         DK_MINS,        KC_TRANSPARENT, 
+    KC_TAB,         DK_COLN,        DK_LCBR,        DK_RCBR,        DK_LABK,        DK_RABK,        KC_NO,                                          KC_TRANSPARENT, MCR_TILDE,      DK_LPRN,        DK_RPRN,        KC_NO,          KC_KP_PLUS,     DK_MINS,           
+    KC_NO,          MCR_GRV,        MCR_BCKTK,      KC_TRANSPARENT, DK_PIPE,        KC_KP_SLASH,                                                                    DK_BSLS,        DK_AMPR,        KC_KP_ASTERISK, KC_NO,          DK_QUES,        KC_TRANSPARENT, 
     KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,                                                                                          KC_TRANSPARENT, KC_TRNS,        KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_SPACE,       KC_NO,          KC_UNDS,                        KC_TRANSPARENT, KC_DELETE,      KC_BSPACE
   ),
   [4] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,                                          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, LCTL(LSFT(KC_F10)),KC_TRANSPARENT,                              KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_F1,          KC_F2,          LALT(LSFT(KC_G)),KC_TRANSPARENT,                                KC_TRANSPARENT, LCTL(DK_DOT),   ST_MCR_ASSGN,   ST_MCR_RPIPE,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MCR_git_add, KC_TRANSPARENT,                                                                 ST_MCR_BRWSR,   ST_MCR_DBGONC,  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                 KC_TRANSPARENT, ST_MCR_COMMIT,  KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_F1,          KC_F2,          LALT(LSFT(KC_G)),KC_TRANSPARENT,                                KC_TRANSPARENT, LCTL(DK_DOT),   MCR_ASSGN,      MCR_RPIPE,      MCR_RMD,        KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MCR_git_add,    KC_TRANSPARENT,                                                                 MCR_BRWSR,      MCR_DBGONC,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                 KC_TRANSPARENT, MCR_COMMIT,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [5] = LAYOUT_moonlander(
@@ -166,57 +168,73 @@ void rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ST_MCR_git_add:
+    case MCR_git_add:
     if (record->event.pressed) {
       SEND_STRING("git add /A");
 
     }
     break;
-    case ST_MCR_BRWSR:
+    case MCR_BRWSR:
     if (record->event.pressed) {
       SEND_STRING("browser*(");
 
     }
     break;
-    case ST_MCR_DBGONC:
+    case MCR_DBGONC:
     if (record->event.pressed) {
       SEND_STRING("debugonce*(" SS_DELAY(100) SS_TAP(X_LEFT));
 
     }
     break;
-    case ST_MCR_COMMIT:
+    case MCR_COMMIT:
     if (record->event.pressed) {
       SEND_STRING("git commit /m " SS_LSFT(SS_TAP(X_2)) SS_LSFT(SS_TAP(X_2)) SS_TAP(X_LEFT));
     }
     break;
 
-    case ST_MCR_TILDE:
+    case MCR_TILDE:
     if (record->event.pressed) {
       SEND_STRING(SS_ALGR(SS_TAP(X_RBRC)) SS_TAP(X_SPC));
     }
     break;
 
-   case ST_MCR_CRRT:
+   case MCR_CRRT:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_RBRC)) SS_TAP(X_SPC));
     }
     break;
     
-    case ST_MCR_ASSGN:
+    case MCR_ASSGN:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_NUBS) SS_TAP(X_SLSH));
     }
     break;
     
-    case ST_MCR_RPIPE:
+    case MCR_RPIPE:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_5)) SS_LSFT(SS_TAP(X_NUBS)) SS_LSFT(SS_TAP(X_5))  );
+      SEND_STRING(SS_LSFT(SS_TAP(X_5)) SS_LSFT(SS_TAP(X_NUBS)) SS_LSFT(SS_TAP(X_5)));
     }
     break;
 
-    case ST_MCR_GRV:
+    case MCR_GRV:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_EQL) SS_TAP(X_SPC));
+    }
+    break;
+
+    case MCR_BCKTK:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_EQL)) SS_TAP(X_SPC));
+    }
+    break;
+
+    case MCR_RMD:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LSFT(SS_TAP(X_EQL)) SS_LSFT(SS_TAP(X_EQL)) SS_LSFT(SS_TAP(X_EQL))
+                  SS_ALGR(SS_TAP(X_7)) SS_TAP(X_R) SS_ALGR(SS_TAP(X_0))
+                  SS_TAP(X_ENTER) SS_TAP(X_ENTER)
+                  SS_LSFT(SS_TAP(X_EQL)) SS_LSFT(SS_TAP(X_EQL)) SS_LSFT(SS_TAP(X_EQL) SS_TAP(X_SPC))
+                  SS_TAP(X_UP));
     }
     break;
 
